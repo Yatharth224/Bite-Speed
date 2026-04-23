@@ -78,14 +78,7 @@ npm run dev
 
 Then open a new terminal and test:
 
-## Local Testing with curl
 
-Start the server first:
-```bash
-npm run dev
-```
-
-Then open a new terminal and test:
 
 **New customer:**
 ```bash
