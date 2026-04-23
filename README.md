@@ -69,6 +69,54 @@ npm run dev
 
 Server will start at `http://localhost:3000`
 
+## Local Testing with curl
+
+Start the server first:
+```bash
+npm run dev
+```
+
+Then open a new terminal and test:
+
+**New customer:**
+```bash
+curl -X POST http://localhost:3000/identify \
+  -H "Content-Type: application/json" \
+  -d '{"email": "lorraine@hillvalley.edu", "phoneNumber": "9876543210"}'
+```
+
+**Same phone, new email:**
+```bash
+curl -X POST http://localhost:3000/identify \
+  -H "Content-Type: application/json" \
+  -d '{"email": "mcfly@hillvalley.edu", "phoneNumber": "9876543210"}'
+```
+
+**Two primaries merge:**
+```bash
+curl -X POST http://localhost:3000/identify \
+  -H "Content-Type: application/json" \
+  -d '{"email": "george@hillvalley.edu", "phoneNumber": "8765432109"}'
+
+curl -X POST http://localhost:3000/identify \
+  -H "Content-Type: application/json" \
+  -d '{"email": "lorraine@hillvalley.edu", "phoneNumber": "8765432109"}'
+```
+
+**Invalid phone:**
+```bash
+curl -X POST http://localhost:3000/identify \
+  -H "Content-Type: application/json" \
+  -d '{"email": "test@gmail.com", "phoneNumber": "123"}'
+```
+
+**Empty body:**
+```bash
+curl -X POST http://localhost:3000/identify \
+  -H "Content-Type: application/json" \
+  -d '{}'
+```
+
 ## API Reference
 
 ### POST /identify
@@ -270,66 +318,11 @@ Older contact (id 1) stays primary. Newer contact (id 3) gets demoted to seconda
 
 ## Health Check
 
-
-GET https://bite-speed-xvnq.onrender.com/health
-
-
 ```bash
-# just open this in browser or run this in terminal
 curl https://bite-speed-xvnq.onrender.com/health
 ```
 
 Response:
 ```json
 { "status": "ok" }
-```
-
----
-
-## Local Testing with curl
-
-Start the server first:
-```bash
-npm run dev
-```
-
-Then open a new terminal and test:
-
-**New customer:**
-```bash
-curl -X POST http://localhost:3000/identify \
-  -H "Content-Type: application/json" \
-  -d '{"email": "lorraine@hillvalley.edu", "phoneNumber": "9876543210"}'
-```
-
-**Same phone, new email:**
-```bash
-curl -X POST http://localhost:3000/identify \
-  -H "Content-Type: application/json" \
-  -d '{"email": "mcfly@hillvalley.edu", "phoneNumber": "9876543210"}'
-```
-
-**Two primaries merge:**
-```bash
-curl -X POST http://localhost:3000/identify \
-  -H "Content-Type: application/json" \
-  -d '{"email": "george@hillvalley.edu", "phoneNumber": "8765432109"}'
-
-curl -X POST http://localhost:3000/identify \
-  -H "Content-Type: application/json" \
-  -d '{"email": "lorraine@hillvalley.edu", "phoneNumber": "8765432109"}'
-```
-
-**Invalid phone:**
-```bash
-curl -X POST http://localhost:3000/identify \
-  -H "Content-Type: application/json" \
-  -d '{"email": "test@gmail.com", "phoneNumber": "123"}'
-```
-
-**Empty body:**
-```bash
-curl -X POST http://localhost:3000/identify \
-  -H "Content-Type: application/json" \
-  -d '{}'
 ```
