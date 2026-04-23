@@ -33,30 +33,6 @@ src/
     └── client.ts                 # Prisma database connection
 ```
 
-> Note: First request may take 30-50 seconds as the free tier server spins up after inactivity.
-
-## Tech Stack
-
-- **Runtime:** Node.js with TypeScript
-- **Framework:** Express.js v4
-- **Database:** PostgreSQL
-- **ORM:** Prisma v5
-- **Hosting:** Render.com
-
-## Project Structure
-
-src/
-├── app.ts                        # Express app setup and server start
-├── routes/
-│   └── identify.ts               # Route definitions
-├── controllers/
-│   └── identifyController.ts     # Request validation and response handling
-├── services/
-│   └── identifyService.ts        # Core reconciliation logic
-└── db/
-└── client.ts                 # Prisma database connection
-
-
 
 ## How It Works
 
