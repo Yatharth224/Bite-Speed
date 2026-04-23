@@ -110,7 +110,7 @@ Identifies a customer and returns their consolidated contact information.
 
 ## Test Cases
 
-### Test 1 — New Customer
+### Test 1 - New Customer
 
 Brand new email and phone, no existing contact in database.
 
@@ -136,7 +136,7 @@ Brand new email and phone, no existing contact in database.
 
 ---
 
-### Test 2 — Same Phone, New Email → Secondary Created
+### Test 2 - Same Phone, New Email → Secondary Created
 
 Same phone number comes in with a different email. System links them.
 
@@ -162,7 +162,7 @@ Same phone number comes in with a different email. System links them.
 
 ---
 
-### Test 3 — Same Request Again → No Duplicate
+### Test 3 - Same Request Again → No Duplicate
 
 Sending the exact same request twice should not create a new contact.
 
@@ -178,7 +178,7 @@ Sending the exact same request twice should not create a new contact.
 
 ---
 
-### Test 4 — Two Separate Primaries Get Merged
+### Test 4 - Two Separate Primaries Get Merged
 
 First create two separate primary contacts, then send a request that links them.
 
@@ -214,7 +214,7 @@ Older contact (id 1) stays primary. Newer contact (id 3) gets demoted to seconda
 
 ---
 
-### Test 5 — Validation: Invalid Phone
+### Test 5 - Validation: Invalid Phone
 
 **Request:**
 ```json
@@ -233,7 +233,7 @@ Older contact (id 1) stays primary. Newer contact (id 3) gets demoted to seconda
 
 ---
 
-### Test 6 — Validation: Invalid Email
+### Test 6 - Validation: Invalid Email
 
 **Request:**
 ```json
@@ -252,7 +252,7 @@ Older contact (id 1) stays primary. Newer contact (id 3) gets demoted to seconda
 
 ---
 
-### Test 7 — Validation: Nothing Provided
+### Test 7 - Validation: Nothing Provided
 
 **Request:**
 ```json
