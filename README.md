@@ -78,29 +78,38 @@ npm run dev
 
 Then open a new terminal and test:
 
+## Local Testing with curl
+
+Start the server first:
+```bash
+npm run dev
+```
+
+Then open a new terminal and test:
+
 **New customer:**
 ```bash
 curl -X POST http://localhost:3000/identify \
   -H "Content-Type: application/json" \
-  -d '{"email": "lorraine@hillvalley.edu", "phoneNumber": "9876543210"}'
+  -d '{"email": "rahul.sharma@gmail.com", "phoneNumber": "9876543210"}'
 ```
 
 **Same phone, new email:**
 ```bash
 curl -X POST http://localhost:3000/identify \
   -H "Content-Type: application/json" \
-  -d '{"email": "mcfly@hillvalley.edu", "phoneNumber": "9876543210"}'
+  -d '{"email": "rahul.s@yahoo.com", "phoneNumber": "9876543210"}'
 ```
 
 **Two primaries merge:**
 ```bash
 curl -X POST http://localhost:3000/identify \
   -H "Content-Type: application/json" \
-  -d '{"email": "george@hillvalley.edu", "phoneNumber": "8765432109"}'
+  -d '{"email": "priya.singh@gmail.com", "phoneNumber": "8765432109"}'
 
 curl -X POST http://localhost:3000/identify \
   -H "Content-Type: application/json" \
-  -d '{"email": "lorraine@hillvalley.edu", "phoneNumber": "8765432109"}'
+  -d '{"email": "rahul.sharma@gmail.com", "phoneNumber": "8765432109"}'
 ```
 
 **Invalid phone:**
