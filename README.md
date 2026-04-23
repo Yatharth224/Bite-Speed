@@ -16,7 +16,22 @@ POST https://bite-speed-xvnq.onrender.com/identify
 - **ORM:** Prisma v5
 - **Hosting:** Render.com
 
+
+
 ## Project Structure
+
+```
+src/
+├── app.ts                        # Express app setup and server start
+├── routes/
+│   └── identify.ts               # Route definitions
+├── controllers/
+│   └── identifyController.ts     # Request validation and response handling
+├── services/
+│   └── identifyService.ts        # Core reconciliation logic
+└── db/
+    └── client.ts                 # Prisma database connection
+```
 
 > Note: First request may take 30-50 seconds as the free tier server spins up after inactivity.
 
@@ -281,11 +296,3 @@ Older contact (id 1) stays primary. Newer contact (id 3) gets demoted to seconda
 
 
 GET https://bite-speed-xvnq.onrender.com/health
-
-
-**Response:**
-```json
-{
-  "status": "ok"
-}
-```
