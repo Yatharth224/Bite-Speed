@@ -1,26 +1,38 @@
+// Tells Prisma to generate a JavaScript/TypeScript client
+// This is what gives us db.contact.findMany() and other query methods
 generator client {
   provider = "prisma-client-js"
 }
 
+// Database connection settings
+// We are using PostgreSQL and the URL is read from the .env file
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
+// The Contact table — stores every contact detail we collect from customers
+// One customer can have multiple rows here, all linked together
 model Contact {
-  id             Int       @id @default(autoincrement())
-  phoneNumber    String?
-  email          String?
-  linkedId       Int?
-  linkPrecedence String
-  createdAt      DateTime  @default(now())
-  updatedAt      DateTime  @updatedAt
-  deletedAt      DateTime?
+  id             Int       @id @default(autoincrement()) // auto-generated unique ID for each row
+  phoneNumber    String?   // customer's phone number — optional, can be null
+  email          String?   // customer's email address — optional, can be null
+  linkedId       Int?      // if this is a secondary contact, this points to the primary contact's id
+  linkPrecedence String    // either "primary" (oldest/main) or "secondary" (linked to a primary)
+  createdAt      DateTime  @default(now()) // automatically set when the record is created
+  updatedAt      DateTime  @updatedAt      // automatically updated whenever the record changes
+  deletedAt      DateTime? // soft delete support — null means the record is active
 
+  // A contact can point to another contact (its primary)
+  // parent = the primary contact this secondary is linked to
   parent   Contact?  @relation("links", fields: [linkedId], references: [id])
+
+  // children = all secondary contacts that are linked to this primary
   children Contact[] @relation("links")
 
-  @@index([email])
-  @@index([phoneNumber])
-  @@index([linkedId])
+  // Database indexes for faster lookups
+  // Without these, every search would scan the entire table
+  @@index([email])       // speeds up searching by email
+  @@index([phoneNumber]) // speeds up searching by phone number
+  @@index([linkedId])    // speeds up fetching all contacts in a cluster
 }
